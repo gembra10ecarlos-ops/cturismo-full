@@ -1,4 +1,4 @@
-name: Deploy site
+name: Deploy Frontend
 
 on:
   push:
@@ -9,10 +9,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: frontend
-
     steps:
       - name: Clonar repositório
         uses: actions/checkout@v4
@@ -22,8 +18,15 @@ jobs:
         with:
           node-version: 20
 
+      - name: Entrar no frontend
+        run: cd frontend
+
       - name: Instalar dependências
-        run: npm install
+        run: |
+          cd frontend
+          npm install
 
       - name: Build do projeto
-        run: npm run build
+        run: |
+          cd frontend
+          npm run build
