@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: cturismo-backend
+    env: python
+    rootDir: .
+    buildCommand: pip install -r backend_cturismo/requirements.txt
+    startCommand: uvicorn backend_cturismo.main:app --host 0.0.0.0 --port $PORT
+    autoDeploy: true
+  - type: static_site
+    name: cturismo-frontend
+    rootDir: .
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    autoDeploy: true
+    envVars:
+      - key: VITE_API_URL
+        value: https://SEU-API.onrender.com

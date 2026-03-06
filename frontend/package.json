@@ -1,20 +1,33 @@
 {
-  "name":"cturismo",
-  "private":true,
-  "version":"0.0.0",
-  "type":"module",
-  "scripts":{
-    "dev":"vite",
-    "build":"vite build",
-    "preview":"vite preview"
+  "name": "c-turismo-gestao-de-clientes",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:frontend": "vite",
+    "backend": "python -m uvicorn backend_cturismo.main:app --host 0.0.0.0 --port 8000",
+    "predev:all": "kill-port 3000 8000",
+    "dev:all": "concurrently -k -n backend,frontend -c magenta,green \"npm:backend\" \"npm:dev\"",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "dependencies":{
-    "react":"^18.2.0",
-    "react-dom":"^18.2.0"
+  "dependencies": {
+    "html2canvas": "^1.4.1",
+    "jspdf": "^4.0.0",
+    "lucide-react": "^0.562.0",
+    "mammoth": "^1.11.0",
+    "pdfjs-dist": "^5.4.530",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "xlsx": "^0.18.5"
   },
-  "devDependencies":{
-    "vite":"^5.0.0",
-    "@vitejs/plugin-react":"^4.0.0",
-    "typescript":"^5.0.0"
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "kill-port": "^2.0.1",
+    "concurrently": "^9.0.1",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0"
   }
 }
